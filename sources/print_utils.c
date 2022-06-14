@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 13:58:02 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/13 14:08:26 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/14 17:48:49 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_putstr(char *str)
 
 void	error(char *str)
 {
-	putstr(str);
-	exit(1);
+	ft_putstr(str);
+	exit(EXIT_FAILURE);
 }

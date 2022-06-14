@@ -6,7 +6,7 @@
 #    By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 18:09:12 by iugolin           #+#    #+#              #
-#    Updated: 2022/06/05 20:46:21 by iugolin          ###   ########.fr        #
+#    Updated: 2022/06/14 17:52:39 by iugolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRCS_DIR = ./sources/
 
 OBJS_DIR = ./objects/
 
-SRCS_FILES = philo.c
+SRCS_FILES =	ft_atoi.c			\
+				parse_and_init.c	\
+				philo.c				\
+				print_utils.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 

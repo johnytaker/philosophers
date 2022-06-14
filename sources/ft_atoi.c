@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 01:31:35 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/05 14:36:59 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/14 17:47:00 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,14 @@ int	ft_isdigit(int c)
 static void	check_digit(char c)
 {
 	if (!ft_isdigit(c) && c != '\0')
-	{
-		ft_putendl_fd("Error", 1);
-		exit(EXIT_FAILURE);
-	}
+		error("Error. Digits only\n");
 }
 
 static void	check_max_min_int(unsigned long number, int sign)
 {
 	if ((number > 2147483648 && sign == -1)
 		|| (number > 2147483647 && sign == 1))
-	{
-		ft_putendl_fd("Error", 1);
-		exit(EXIT_FAILURE);
-	}
+		error("Error. MIN/MAX_INT size only\n");
 }
 
 int	ft_atoi(const char *str)
