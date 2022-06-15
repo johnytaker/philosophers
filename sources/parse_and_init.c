@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_and_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 18:42:14 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/14 18:12:17 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/14 22:31:08 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	set_one_philosopher_data(t_info *info, int thread_id)
 static void	set_all_philosophers_data(t_info *info)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < info->num_of_phil)
 		set_one_philosopher_data(info, i);
@@ -36,13 +36,13 @@ static void	set_all_philosophers_data(t_info *info)
 t_info	*parse_and_init(int argc, char **argv)
 {
 	t_info	*info;
-	
+
 	info = NULL;
 	if (argc == 5 || argc == 6)
 	{
 		info = (t_info *)malloc(sizeof(t_info));
 		if (!info)
-			error("Allocate memory error\n");
+			print_memory_error();
 		info->num_of_phil = ft_atoi(argv[1]);
 		info->time_to_die = ft_atoi(argv[2]);
 		info->time_to_eat = ft_atoi(argv[3]);
@@ -52,14 +52,14 @@ t_info	*parse_and_init(int argc, char **argv)
 		info->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
 			info->num_of_phil);
 		if (!info->forks)
-			error("Allocate memory error\n");
+			print_memory_error();
 		info->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher) * \
 			info->num_of_phil);
 		if (!info->philosophers)
-			error("Allocate memory error\n");
+			print_memory_error();
 		set_all_philosophers_data(info);
 	}
 	else
-		error("Wrong number of arguments\n");
+		print_usage();
 	return (info);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 17:35:16 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/14 18:01:07 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/14 22:30:54 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int		ft_atoi(const char *str);
 
 t_info	*parse_and_init(int argc, char **argv);
 
-void	ft_putstr(char *str);
-void	error(char *str);
+void	print_error(char *str);
+void	print_memory_error(void);
+void	print_usage(void);
 
 #endif

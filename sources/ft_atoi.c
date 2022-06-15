@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 01:31:35 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/14 17:47:00 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/14 22:18:43 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	ft_isdigit(int c)
 static void	check_digit(char c)
 {
 	if (!ft_isdigit(c) && c != '\0')
-		error("Error. Digits only\n");
+		print_error("Error. Digits only");
 }
 
 static void	check_max_min_int(unsigned long number, int sign)
 {
 	if ((number > 2147483648 && sign == -1)
 		|| (number > 2147483647 && sign == 1))
-		error("Error. MIN/MAX_INT size only\n");
+		print_error("Error. MIN/MAX_INT size only");
 }
 
 int	ft_atoi(const char *str)

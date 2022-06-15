@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+         #
+#    By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 18:09:12 by iugolin           #+#    #+#              #
-#    Updated: 2022/06/14 17:52:39 by iugolin          ###   ########.fr        #
+#    Updated: 2022/06/15 04:59:30 by iugolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ temp :
 
 $(NAME) : $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
+	@echo "\nphilo udpated"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile
 	$(CC) $(CFLAGS) $(PTHREAD)  -I $(INCLUDES_PATH) -c $< -o $@
@@ -52,11 +53,11 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile
 
 clean :
 	$(RM) $(OBJS_DIR)
-	@echo "\nphilo clean done\n"
+	# @echo "\nphilo clean done"
 
 fclean :
 	$(RM) $(OBJS_DIR)
 	$(RM) $(NAME)
-	@echo \nphilo fclean done\n"
+	@echo "\nphilo fclean done"
 
 re : fclean all
