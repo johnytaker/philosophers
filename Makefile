@@ -6,7 +6,7 @@
 #    By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 18:09:12 by iugolin           #+#    #+#              #
-#    Updated: 2022/06/15 04:59:30 by iugolin          ###   ########.fr        #
+#    Updated: 2022/06/26 20:47:47 by iugolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,17 @@ SRCS_DIR = ./sources/
 
 OBJS_DIR = ./objects/
 
-SRCS_FILES =	ft_atoi.c			\
+# FSANIT = -fsanitize=address
+
+SRCS_FILES =	allocation_utils.c	\
+				execution.c			\
+				ft_atoi.c			\
 				parse_and_init.c	\
 				philo.c				\
-				print_utils.c
+				print_utils.c		\
+				thread_utils.c		\
+				time.c				\
+				types_of_actions.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
@@ -44,7 +51,7 @@ temp :
 
 $(NAME) : $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
-	@echo "\nphilo udpated"
+	@echo "\nphilo updated"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile
 	$(CC) $(CFLAGS) $(PTHREAD)  -I $(INCLUDES_PATH) -c $< -o $@
@@ -53,7 +60,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile
 
 clean :
 	$(RM) $(OBJS_DIR)
-	# @echo "\nphilo clean done"
+	@echo "\nphilo clean done"
 
 fclean :
 	$(RM) $(OBJS_DIR)

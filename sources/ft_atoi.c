@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 01:31:35 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/14 22:18:43 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/26 19:12:39 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,33 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
-static void	check_digit(char c)
+static int	check_digit(char c)
 {
 	if (!ft_isdigit(c) && c != '\0')
-		print_error("Error. Digits only");
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
-static void	check_max_min_int(unsigned long number, int sign)
+static int	check_max_int(unsigned long number)
 {
-	if ((number > 2147483648 && sign == -1)
-		|| (number > 2147483647 && sign == 1))
-		print_error("Error. MIN/MAX_INT size only");
+	if (number > 2147483647)
+		return (-2);
+	return (number);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi_unsigned(const char *str)
 {
 	unsigned long	number;
-	int				sign;
 
 	number = 0;
-	sign = 1;
-	if (*str == '-')
-	{
-		sign *= -1;
-		str++;
-	}
-	check_digit(*str);
+	if (check_digit(*str))
+		return (-2);
 	while (ft_isdigit(*str))
 	{
 		number = number * 10 + *str - '0';
 		str++;
-		check_digit(*str);
+		if (check_digit(*str))
+			return (-2);
 	}
-	check_max_min_int(number, sign);
-	return (number * sign);
+	return (check_max_int(number));
 }
