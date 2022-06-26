@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 17:35:16 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/26 18:46:01 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/26 21:15:15 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ struct s_philosopher
 	int				death;
 	int				meal_counter;
 	long long		last_meal;
-	pthread_mutex_t	*message;
+	// pthread_mutex_t	*message;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_info			*info;

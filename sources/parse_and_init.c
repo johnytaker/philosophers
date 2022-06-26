@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 18:42:14 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/26 20:54:38 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/26 21:16:05 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_one_philosopher_data(t_info *info, int thread_id)
 		info->number_of_time_to_meal;
 	info->philosophers[thread_id].last_meal = 0;
 	info->philosophers[thread_id].info = info;
-	info->philosophers[thread_id].message = &info->print;
+	// info->philosophers[thread_id].message = &info->print;
 	info->philosophers[thread_id].left_fork = \
 		&info->forks[thread_id];
 	info->philosophers[thread_id].right_fork = \

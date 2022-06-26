@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 13:58:02 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/26 19:06:41 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/26 21:15:43 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	print_usage(void)
 
 void	print_action(t_philosopher *phil, char *str)
 {
-	pthread_mutex_lock(phil->message);
+	pthread_mutex_lock(&phil->info->print);
 	update_timestamp(phil->info);
 	printf("%lld %d %s\n", \
 		phil->info->timestamp, phil->t_id, str);
-	pthread_mutex_unlock(phil->message);
+	pthread_mutex_unlock(&phil->info->print);
 }
