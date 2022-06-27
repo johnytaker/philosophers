@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 01:31:35 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/26 19:12:39 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/27 21:01:37 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_isdigit(int c)
 static int	check_digit(char c)
 {
 	if (!ft_isdigit(c) && c != '\0')
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (RETURN_FAILURE);
+	return (RETURN_SUCCESS);
 }
 
 static int	check_max_int(unsigned long number)

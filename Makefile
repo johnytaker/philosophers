@@ -6,7 +6,7 @@
 #    By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 18:09:12 by iugolin           #+#    #+#              #
-#    Updated: 2022/06/26 20:47:47 by iugolin          ###   ########.fr        #
+#    Updated: 2022/06/27 21:57:58 by iugolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ temp :
 	@mkdir -p ./objects/
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) $(FSANIT) -o $(NAME)
 	@echo "\nphilo updated"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile

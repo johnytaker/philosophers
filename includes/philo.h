@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 17:35:16 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/26 21:15:15 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/27 21:13:24 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+/*					RETURN_CODES					*/
+# define RETURN_SUCCESS	0
+# define RETURN_FAILURE	1
 /*					STRUCTURES						*/
 typedef struct s_philosopher	t_philosopher;
 typedef struct s_info			t_info;
@@ -31,7 +34,8 @@ struct s_philosopher
 	int				death;
 	int				meal_counter;
 	long long		last_meal;
-	// pthread_mutex_t	*message;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*message;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_info			*info;
@@ -47,13 +51,11 @@ struct s_info
 	long long		start_simulation;
 	long long		timestamp;
 	pthread_mutex_t	print;
-	pthread_mutex_t	*forks;
 	t_philosopher	*philosophers;
 };
 /*					ALLOCATION_UTILS				*/
 int			memory_allocation(t_info **info);
-int			free_all(t_info *info, \
-	pthread_mutex_t *forks, t_philosopher *philosophers);
+int			free_all(t_info *info, t_philosopher *philosophers);
 /*					EXECUTION						*/
 void		*execution(void *philosopher);
 /*					FT_ATOI							*/
@@ -64,7 +66,7 @@ int			parse_and_init(t_info **info, int argc, char **argv);
 /*					PRINT_UTILS						*/
 int			print_error_and_free(t_info	*info, int flag);
 void		print_usage(void);
-void		print_action(t_philosopher *phil, char *str);
+int			print_action(t_philosopher *phil, char *str);
 /*						TIME						*/
 long long	get_time(void);
 void		update_timestamp(t_info *info);
@@ -72,15 +74,11 @@ void		update_last_meal(t_philosopher *philo);
 void		ft_time(int time);
 /*					THREAD_UTILS					*/
 int			create_threads(t_info *info);
-int			create_mutexes(t_info *info);
-// int			join_threads(t_info *info);
 int			detach_threads(t_info *info);
 int			destroy_mutexes(t_info *info);
 /*					TYPES_OF_ACTIONS					*/
-int			one_philosopher_case(t_philosopher *phil);
 void		take_forks_and_eat(t_philosopher *phil);
 void		start_sleeping(t_philosopher *phil);
 void		start_thinking(t_philosopher *phil);
-void		check_status(t_philosopher *phil);
 
 #endif
