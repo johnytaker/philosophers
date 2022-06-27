@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:36:17 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/27 21:49:54 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/06/27 22:56:04 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-				// pthread_mutex_lock(&info->print);
-				// printf("%lld %d died\n", info->timestamp, i + 1);
 
 static int	death_case(t_info *info, int number)
 {
@@ -47,7 +45,7 @@ static int	death_check(t_info *info)
 				j++;
 		}
 		if (j == info->num_of_phil)
-			return (RETURN_SUCCESS);
+			break ;
 	}
 	return (RETURN_SUCCESS);
 }
