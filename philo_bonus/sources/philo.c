@@ -6,42 +6,38 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:36:17 by iugolin           #+#    #+#             */
-/*   Updated: 2022/07/01 01:58:33 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:33:51 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-// void	kill_all(t_info *info)
-// {
-// 	int	counter;
-// 	int	status;
+void	wait_and_kill(t_info *info)
+{
+	int	pid;
+	int	status;
+	int	i;
 
-// 	counter = -1;
-// 	while (++counter < info->num_of_phil)
-// 	{
-// 		waitpid(-1, &status, 0);
-// 		if (status)
-// 		{
-// 			counter = -1;
-// 			while (++counter < info->num_of_phil)
-// 				kill(info->philosophers[counter].pid, SIGKILL);
-// 			break ;
-// 		}
-// 	}
-// 	close_semaphores(info);
-// 	unlink_semaphores();
-// }
+	pid  = waitpid(-1, &status, 0);
+	if (pid == -1)
+		print_error_and_exit(11);
+	else if (WIFEXITED(status))
+	{
+		i = -1;
+		while (++i < info->num_of_phil)
+			kill(info->philosophers[i].pid, SIGTERM);
+	}
+	close_semaphores(info);
+	unlink_semaphores();
+}
 
 int	main(int argc, char **argv)
 {
 	t_info	*info;
 
 	parse_and_init(&info, argc, argv);
-	info->start_simulation = get_time();
-	// printf("start %lld\n", info->start_simulation);
 	create_all_processes(info);
-	kill_all(info);
+	wait_and_kill(info);
 	free_all(info, info->philosophers);
 	return (RETURN_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 18:42:14 by iugolin           #+#    #+#             */
-/*   Updated: 2022/07/01 01:59:48 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/07/03 19:16:39 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 static void	set_one_philosopher_data(t_info *info, int thread_id)
 {
 	info->philosophers[thread_id].philo_id = thread_id + 1;
-	info->philosophers[thread_id].death = 0;
+	info->philosophers[thread_id].death_counter = 0;
+	info->philosophers[thread_id].time_to_die = info->time_to_die;
+	info->philosophers[thread_id].time_to_eat = info->time_to_eat;
+	info->philosophers[thread_id].time_to_sleep= info->time_to_sleep;
+	info->philosophers[thread_id].death_flag = 0;
 	info->philosophers[thread_id].meal_counter = \
 		info->number_of_time_to_meal;
 	info->philosophers[thread_id].last_meal = 0;
+	info->philosophers[thread_id].timestamp = 0;
+	info->philosophers[thread_id].start_time = get_time();
 	info->philosophers[thread_id].info = info;
 }
 
@@ -58,7 +64,6 @@ static int	parser(t_info *info, char **argv)
 	info->time_to_eat = ft_atoi_unsigned(argv[3]);
 	info->time_to_sleep = ft_atoi_unsigned(argv[4]);
 	info->number_of_time_to_meal = -1;
-	info->start_simulation = 0;
 	if (argv[5])
 		info->number_of_time_to_meal = ft_atoi_unsigned(argv[5]);
 	return (check_values(info));
@@ -73,7 +78,7 @@ void	parse_and_init(t_info **info, int argc, char **argv)
 	if (parser(*info, argv))
 		print_error_and_exit(3);
 	unlink_semaphores();
-	set_all_philosophers_data(*info);
 	if (open_semaphores(*info))
 		print_error_and_exit(6);
+	set_all_philosophers_data(*info);
 }
