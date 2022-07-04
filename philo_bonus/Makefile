@@ -6,7 +6,7 @@
 #    By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 18:09:12 by iugolin           #+#    #+#              #
-#    Updated: 2022/07/04 11:33:21 by iugolin          ###   ########.fr        #
+#    Updated: 2022/07/04 12:19:57 by iugolin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,6 @@ RM = @rm -rf
 SRCS_DIR = ./sources/
 
 OBJS_DIR = ./objects/
-
-# FSANIT = -fsanitize=address
 
 SRCS_FILES =	allocation_utils.c	\
 				execution.c			\
@@ -51,7 +49,7 @@ temp :
 	@mkdir -p ./objects/
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) $(FSANIT) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME)
 	@echo "\nphilo_bonus updated"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDES) Makefile
