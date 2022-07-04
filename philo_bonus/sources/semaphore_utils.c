@@ -6,21 +6,20 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:11:33 by iugolin           #+#    #+#             */
-/*   Updated: 2022/07/03 19:16:23 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/07/04 11:15:01 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	close_semaphores(t_info *info)
+void	close_semaphores(t_info *info)
 {
 	if (sem_close(info->forks))
-		return (RETURN_FAILURE);
+		print_error_and_exit(11);
 	if (sem_close(info->print))
-		return (RETURN_FAILURE);
+		print_error_and_exit(11);
 	if (sem_close(info->data))
-		return (RETURN_FAILURE);
-	return (RETURN_SUCCESS);
+		print_error_and_exit(11);
 }
 
 void	unlink_semaphores(void)
@@ -30,16 +29,15 @@ void	unlink_semaphores(void)
 	sem_unlink("/data");
 }
 
-int	open_semaphores(t_info *info)
+void	open_semaphores(t_info *info)
 {
 	info->forks = sem_open("/forks", O_CREAT, S_IRWXU, info->num_of_phil);
 	if (info->forks == SEM_FAILED)
-		return (RETURN_FAILURE);
+		print_error_and_exit(5);
 	info->print = sem_open("/print", O_CREAT, S_IRWXU, 1);
 	if (info->print == SEM_FAILED)
-		return (RETURN_FAILURE);
+		print_error_and_exit(5);
 	info->data = sem_open("/data", O_CREAT, S_IRWXU, 1);
 	if (info->data == SEM_FAILED)
-		return (RETURN_FAILURE);
-	return (RETURN_SUCCESS);
+		print_error_and_exit(5);
 }
