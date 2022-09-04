@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iugolin <iugolin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 17:35:16 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/27 22:26:58 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/09/04 23:25:51 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			ft_atoi_unsigned(const char *str);
 int			parse_and_init(t_info **info, int argc, char **argv);
 /*					PRINT_UTILS						*/
 int			print_error_and_free(t_info	*info, int flag);
-void		print_usage(void);
+int			print_usage(void);
 int			print_action(t_philosopher *phil, char *str);
 /*						TIME						*/
 long long	get_time(void);

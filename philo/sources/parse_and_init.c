@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 18:42:14 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/27 21:15:51 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/09/04 23:51:09 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ static int	parser(t_info *info, char **argv)
 
 int	parse_and_init(t_info **info, int argc, char **argv)
 {
+	if (argc != 5 && argc != 6)
+		return (print_usage());
 	if (memory_allocation(info))
 		return (print_error_and_free(*info, 2));
-	if (argc != 5 && argc != 6)
-		return (print_error_and_free(*info, 1));
-	if (pthread_mutex_init(&(*info)->print, NULL))
-		return (print_error_and_free(*info, 5));
 	if (parser(*info, argv))
 		return (print_error_and_free(*info, 3));
+	if (pthread_mutex_init(&(*info)->print, NULL))
+		return (print_error_and_free(*info, 5));
 	if (set_all_philosophers_data(*info))
 		return (print_error_and_free(*info, 5));
 	return (RETURN_SUCCESS);

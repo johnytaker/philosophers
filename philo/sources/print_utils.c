@@ -6,7 +6,7 @@
 /*   By: iugolin <iugolin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 13:58:02 by iugolin           #+#    #+#             */
-/*   Updated: 2022/06/27 21:45:44 by iugolin          ###   ########.fr       */
+/*   Updated: 2022/09/04 23:51:27 by iugolin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	print_error_and_free(t_info	*info, int flag)
 {
-	if (flag == 1)
-		print_usage();
-	else if (flag == 2)
+	if (flag == 2)
 		printf("Memory allocation error\n");
 	else if (flag == 3)
 		printf("Use positive digits > 0 in MAX_INT range only!\n");
@@ -33,7 +31,7 @@ int	print_error_and_free(t_info	*info, int flag)
 	return (free_all(info, info->philosophers));
 }
 
-void	print_usage(void)
+int	print_usage(void)
 {
 	printf("\n  USAGE:\n\n\
   ./philo [1] [2] [3] [4] [*5] \n\n\
@@ -42,6 +40,7 @@ void	print_usage(void)
    3 > time_to_eat (milliseconds) (from 1 to MAX_INT)\n\
    4 > time_to_sleep(milliseconds) (from 1 to MAX_INT)\n\
  * 5 > number_of_times_each_philosopher_must_eat (from 1 to MAX_INT)\n");
+	return (RETURN_FAILURE);
 }
 
 int	print_action(t_philosopher *phil, char *str)
